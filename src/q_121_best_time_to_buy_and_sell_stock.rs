@@ -27,11 +27,23 @@
 //! 1 <= prices.length <= 105
 //! 0 <= prices[i] <= 104
 
+use std::cmp::{max, min};
 pub struct Solution;
 
 impl Solution {
     pub fn max_profit(prices: Vec<i32>) -> i32 {
-        5
+        if prices.len() == 1 {
+            return 0;
+        }
+
+        let mut floor = prices[0];
+        let mut max_profit = 0;
+        for &i in prices.iter().skip(1) {
+            let profit = i - floor;
+            max_profit = max(profit, max_profit);
+            floor = min(i, floor);
+        }
+        max_profit
     }
 }
 
