@@ -9,6 +9,7 @@
 - [169. Majority Element](./src/q_169_majority_element.rs)
 - [189. Rotate Array](./src/q_189_rotate_array.rs)
 - [121. Best Time to Buy and Sell Stock](./src/q_121_best_time_to_buy_and_sell_stock.rs)
+- [122. Best Time to Buy and Sell Stock II](./src/q_122_best_time_to_buy_and_sell_stock.rs)
 
 ## Two Pointers
 
