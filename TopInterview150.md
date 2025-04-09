@@ -10,6 +10,7 @@
 - [189. Rotate Array](./src/q_189_rotate_array.rs)
 - [121. Best Time to Buy and Sell Stock](./src/q_121_best_time_to_buy_and_sell_stock.rs)
 - [122. Best Time to Buy and Sell Stock II](./src/q_122_best_time_to_buy_and_sell_stock.rs)
+- [55. Jump Game](./src/q_55_jump_game.rs)
 
 ## Two Pointers
 
