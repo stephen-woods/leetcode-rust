@@ -36,6 +36,45 @@ pub struct Solution;
 
 impl Solution {
     pub fn merge(nums1: &mut Vec<i32>, m: i32, nums2: &mut Vec<i32>, n: i32) {
+        // If nums2 is empty, no need to merge
+        if n == 0 {
+            return;
+        }
+
+        // If nums1 is empty, copy nums2 to nums1
+        if m == 0 {
+            nums1.copy_from_slice(nums2);
+            return;
+        }
+
+        // We need to merge
+        let mut i = m as usize - 1;
+        let mut j = n as usize - 1;
+
+        for k in (0..nums1.len()).rev() {
+            if nums1[i] > nums2[j] {
+                nums1[k] = nums1[i];
+
+                // If nums1 is empty, copy the rest of nums2 to nums1. Note
+                // the inclusion of j in the slice
+                if i == 0 {
+                    nums1[..k].copy_from_slice(&nums2[..=j]);
+                    return;
+                }
+                i -= 1;
+            } else {
+                nums1[k] = nums2[j];
+
+                // If nums2 is empty, no need to merge anymore
+                if j == 0 {
+                    return;
+                }
+                j -= 1;
+            }
+        }
+    }
+
+    pub fn merge2(nums1: &mut Vec<i32>, m: i32, nums2: &mut Vec<i32>, n: i32) {
         let mut x = m - 1;
         let mut y = n - 1;
         let mut z = m + n - 1;
@@ -84,6 +123,18 @@ fn test_c() {
     let m = 0;
     let n = 1;
     let expected = vec![1];
+    Solution::merge(&mut nums1, m, &mut nums2, n);
+    assert_eq!(expected, nums1);
+}
+
+#[test]
+fn test_d() {
+    let mut nums1 = vec![2, 0];
+    let mut nums2 = vec![1];
+
+    let m = 1;
+    let n = 1;
+    let expected = vec![1, 2];
     Solution::merge(&mut nums1, m, &mut nums2, n);
     assert_eq!(expected, nums1);
 }
