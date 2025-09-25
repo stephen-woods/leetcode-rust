@@ -44,6 +44,27 @@ impl Solution {
             floor = min(i, floor);
         }
         max_profit
+    } 
+
+    pub fn max_profit_fold(prices: Vec<i32>) -> i32 {
+        if prices.len() == 1 {
+            return 0;
+        }
+
+        let zero = (0_i32, prices[0]); 
+        let (max_profits, _) =  prices
+            .iter()
+            .skip(1)
+            .fold(zero, |(profit, floor),  e| 
+                { 
+                    let p = max(profit, *e - floor);
+                    let f = min(floor, *e); 
+                    (p, f)
+                }
+            );
+
+        max_profits
+    
     }
 }
 
